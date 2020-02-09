@@ -117,7 +117,7 @@ app.get('/api/shorturl/:shorturl', function(req, res) {
   const { shorturl } = req.params;
   // look for a document in database
   Url.findOne({ short_url: shorturl }, (error, urlFound) => {
-    if (error) {
+    if (error || !urlFound) {
       res.json({
         error: 'No matching URL'
       });
